@@ -16,34 +16,39 @@ import GoalInput from "./components/GoalInput";
 export default function App() {
   const [courseGoals, setCoruseGoalsList] = useState([]);
 
- 
+  function deleteGoalHandler(id) {
+    setCoruseGoalsList(currentCourseGoals => {
+      return currentCourseGoals.filter((goal)=> goal.id !== id);
+    });
+  }
 
   function addGoalHandler(enteredGoalText) {
     // setCoruseGoalsList( [...courseGoals, enteredGoalText]);
 
-
     setCoruseGoalsList((currentCourseGoals) => [
       ...currentCourseGoals,
       // {text:enteredGoalText, key: Math.random().toString()}
-      {text:enteredGoalText, id: Math.random().toString()}
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
-
-    
   }
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler}/>
+      <GoalInput onAddGoal={addGoalHandler} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
             // itemData.index;
             return (
-              <GoalItem text={itemData.item.text}/>
+              <GoalItem
+                text={itemData.item.text}
+                id={itemData.item.id}
+                onDeleteItem={deleteGoalHandler}
+              />
             );
           }}
-          keyExtractor={(item,index) => {
+          keyExtractor={(item, index) => {
             return item.id;
           }}
           alwaysBounceVertical={false}
@@ -64,9 +69,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flex: 1,
   },
-  
+
   goalsContainer: {
     flex: 5,
   },
-  
 });
