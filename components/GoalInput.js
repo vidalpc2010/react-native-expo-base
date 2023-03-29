@@ -26,7 +26,7 @@ function GoalInput(props) {
   }
 
   return (
-    <Modal visible={props.visible} animationType="fade">
+    <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <Image style={styles.image} source={require('../assets/goal.png')}/>
         <TextInput
