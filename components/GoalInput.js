@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import { useState } from "react";
 
+import { LinearGradient } from "expo-linear-gradient";
+
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
 
@@ -27,7 +29,7 @@ function GoalInput(props) {
 
   return (
     <Modal visible={props.visible} animationType="slide">
-      <View style={styles.inputContainer}>
+      <LinearGradient colors={['#e4d0ff','#ddb52f']} style={styles.inputContainer}>
         <Image style={styles.image} source={require('../assets/goal.png')}/>
         <TextInput
           style={styles.textInput}
@@ -43,7 +45,7 @@ function GoalInput(props) {
             <Button title="Add Goal!" onPress={addGoalHandler} color="#b180f0" />
           </View>
         </View>
-      </View>
+      </LinearGradient>
     </Modal>
   );
 }
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
     padding:16,
     // borderBottomWidth: 1,
     // borderBottomColor: "#cccccc",
-    backgroundColor:"#311b6b",
+    // backgroundColor:"#311b6b",
     flex: 1,
   },
   buttonContainer: {
